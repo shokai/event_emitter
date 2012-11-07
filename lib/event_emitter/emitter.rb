@@ -13,16 +13,19 @@ module EventEmitter
       @events ||= []
     end
 
-    def on(type, &block)
+    def add_listener(type, &block)
       raise ArgumentError, 'listener block not given' unless block_given?
       events << {:type => type.to_sym, :listener => block}
     end
+
+    alias :on :add_listener
     
     def emit(type, data)
       events.each do |e|
         e[:listener].call data if e[:type] == type.to_sym
       end
     end
+
   end
 
 end

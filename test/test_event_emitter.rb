@@ -13,7 +13,18 @@ class TestEventEmitter < MiniTest::Unit::TestCase
   def test_on_emit
     result = nil
     @foo.on :chat do |data|
-      puts "chat - #{data[:user]} : #{data[:message]}"
+      result = data
+    end
+
+    @foo.emit :chat, :user => 'shokai', :message => 'hello world'
+
+    assert result[:user] == 'shokai'
+    assert result[:message] == 'hello world'
+  end
+
+  def test_add_listener
+    result = nil
+    @foo.add_listener :chat do |data|
       result = data
     end
 
