@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     RedCloth (4.2.9)
+    RedCloth (4.2.9-java)
     activesupport (2.3.14)
     hoe (3.1.1)
       rake (~> 0.8)
@@ -18,6 +19,7 @@ GEM
     syntax (1.0.0)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
