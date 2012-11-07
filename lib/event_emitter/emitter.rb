@@ -13,10 +13,15 @@ module EventEmitter
       @events ||= []
     end
 
-    def add_listener(type, &block)
+    def add_listener(type, params={}, &block)
       raise ArgumentError, 'listener block not given' unless block_given?
       id = events.empty? ? 0 : events.last[:id]+1
-      events << {:type => type.to_sym, :listener => block, :id => id}
+      events << {
+        :type => type.to_sym,
+        :listener => block,
+        :params => params,
+        :id => id
+      }
       id
     end
 
@@ -36,8 +41,16 @@ module EventEmitter
     
     def emit(type, data)
       events.each do |e|
-        e[:listener].call data if e[:type] == type.to_sym
+        if e[:type] == type.to_sym
+          listener = e[:listener]
+          remove_listener e[:id] if e[:params][:once]
+          listener.call data
+        end
       end
+    end
+
+    def once(type, &block)
+      add_listener type, {:once => true}, &block
     end
 
   end
