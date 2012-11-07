@@ -7,9 +7,11 @@ README.rdoc
 Rakefile
 lib/event_emitter.rb
 lib/event_emitter/emitter.rb
+samples/instance-specific-method.rb
 samples/sample.rb
 script/console
 script/destroy
 script/generate
 test/test_event_emitter.rb
 test/test_helper.rb
+test/test_singular_method.rb
