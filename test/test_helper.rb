@@ -1,3 +1,5 @@
-require 'stringio'
-require 'test/unit'
-require File.dirname(__FILE__) + '/../lib/event_emitter'
+require 'rubygems'
+require 'minitest/autorun'
+
+$:.unshift File.expand_path '../lib', File.dirname(__FILE__)
+require 'event_emitter'
