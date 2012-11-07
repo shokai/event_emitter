@@ -103,6 +103,26 @@
 <span class="no">EventEmitter</span><span class="o">.</span><span class="n">apply</span> <span class="n">foo</span>
 </pre></div>
 
+
+<h3>Class Method</h3>
+
+<p>apply as class method</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">DB</span>
+  <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">connect</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">emit</span> <span class="ss">:connect</span><span class="p">,</span> <span class="ss">:connected</span>
+  <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="nc">EventEmitter</span><span class="p">.</span><span class="n">apply</span> <span class="nc">DB</span>
+
+<span class="nc">DB</span><span class="p">.</span><span class="n">on</span> <span class="ss">:connect</span> <span class="k">do</span> <span class="p">|</span><span class="n">status</span><span class="p">|</span>
+  <span class="nb">puts</span> <span class="n">status</span>
+<span class="n">end</span>
+
+<span class="nc">DB</span><span class="p">.</span><span class="n">connect</span> <span class="c1"># =&gt; "connected"</span>
+</pre></div>
+
 <h3>More Samples</h3>
 
 <ul>
