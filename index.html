@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Ruby EventEmitter by shokai</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Ruby EventEmitter</h1>
+          <h2>Ruby port of EventEmitter from Node.js</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/shokai/event_emitter/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/shokai/event_emitter/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/shokai/event_emitter" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h2>INSTALL:</h2>
+
+<pre><code>% gem install event_emitter
+</code></pre>
+
+<h2>REQUIREMENTS:</h2>
+
+<ul>
+<li>Ruby 1.8.7+</li>
+<li>Ruby 1.9.3+</li>
+<li>JRuby 1.6.7+</li>
+</ul><h2>SYNOPSIS:</h2>
+
+<h3>setup</h3>
+
+<p>load rubygem</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s2">"rubygems"</span>
+<span class="nb">require</span> <span class="s2">"event_emitter"</span>
+</pre></div>
+
+<p>include</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span>
+  <span class="kp">include</span> <span class="no">EventEmitter</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>on/emit</h3>
+
+<p>regist event listener</p>
+
+<div class="highlight"><pre><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span>
+<span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"shokai"</span>
+<span class="n">user</span><span class="o">.</span><span class="n">on</span> <span class="ss">:go</span> <span class="k">do</span> <span class="o">|</span><span class="n">data</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> go to </span><span class="si">#{</span><span class="n">data</span><span class="o">[</span><span class="ss">:place</span><span class="o">]</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>call event</p>
+
+<div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">emit</span> <span class="ss">:go</span><span class="p">,</span> <span class="p">{</span><span class="ss">:place</span> <span class="o">=&gt;</span> <span class="s2">"mountain"</span><span class="p">}</span>
+<span class="c1"># =&gt; "shokai go to mountain"</span>
+</pre></div>
+
+<h3>once</h3>
+
+<p>regist event using "once"</p>
+
+<div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">once</span> <span class="ss">:eat</span> <span class="k">do</span> <span class="o">|</span><span class="n">data</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>call only first time</p>
+
+<div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">emit</span> <span class="ss">:eat</span><span class="p">,</span> <span class="s2">"BEEF"</span>  <span class="c1"># =&gt;  "shokai -&gt; BEEF"</span>
+<span class="n">user</span><span class="o">.</span><span class="n">emit</span> <span class="ss">:eat</span><span class="p">,</span> <span class="s2">"Ramen"</span>  <span class="c1"># =&gt; do not call.</span>
+</pre></div>
+
+<h3>Instance-Specific Method</h3>
+
+<p>apply as instance-specific method</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Foo</span>
+<span class="k">end</span>
+
+<span class="n">foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="o">.</span><span class="n">new</span>
+<span class="no">EventEmitter</span><span class="o">.</span><span class="n">apply</span> <span class="n">foo</span>
+</pre></div>
+
+<h3>More Samples</h3>
+
+<ul>
+<li><a href="https://github.com/shokai/event_emitter/tree/master/samples">https://github.com/shokai/event_emitter/tree/master/samples</a></li>
+</ul>
+        </section>
+
+        <footer>
+          Ruby EventEmitter is maintained by <a href="https://github.com/shokai">shokai</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
