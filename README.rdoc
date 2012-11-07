@@ -43,6 +43,13 @@ call
   foo.emit :bar, 100  # => call only first time
   foo.emit :bar, 200  # => not call
 
+see samples https://github.com/shokai/event_emitter/tree/master/samples
+
+== TEST:
+
+  % gem install bundler
+  % bundle install
+  % rake test
 
 == LICENSE:
 
