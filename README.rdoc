@@ -18,6 +18,8 @@ Ruby port of EventEmitter from Node.js
 
 == SYNOPSIS:
 
+load rubygem
+
   require "rubygems"
   require "event_emitter"
 
