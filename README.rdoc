@@ -1,6 +1,6 @@
 = event_emitter
 
-* http://github.com/shokai/event_emitter
+* http://shokai.github.com/event_emitter
 
 == INSTALL:
 
@@ -13,7 +13,7 @@ Ruby port of EventEmitter from Node.js
 == REQUIREMENTS:
 
 * Ruby 1.8.7+
-* Ruby 1.9.3+
+* Ruby 1.9.2+
 * JRuby 1.6.7+
 
 == SYNOPSIS:
