@@ -53,4 +53,16 @@ class TestEventEmitter < MiniTest::Unit::TestCase
     @foo.remove_listener :bar
     assert @foo.events.size == 0, 'remove all "bar" listener'
   end
+
+  def test_once
+    total = 0
+    @foo.once :add do |data|
+      total += data
+    end
+
+    @foo.emit :add, 1
+    assert total == 1, 'first call'
+    @foo.emit :add, 1
+    assert total == 1, 'call listener only first time'
+  end
 end
