@@ -1,4 +1,3 @@
 === 0.0.1 2012-11-07
 
-* 1 major enhancement:
-  * Initial release
+* implement "on" and "emit"
