@@ -12,7 +12,21 @@ Ruby port of EventEmitter from Node.js
 
 == SYNOPSIS:
 
-    require 'event_emitter'
+  require 'event_emitter'
+
+  class Foo
+    include EventEmitter
+  end
+
+
+  ## regist event listener
+  foo.on :chat do |data|
+    puts "chat - #{data[:user]} : #{data[:message]}"
+  end
+
+  ## call
+  foo.emit :chat, {:user => 'shokai', :message => 'hello!!'}
+
 
 == LICENSE:
 
