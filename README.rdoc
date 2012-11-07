@@ -16,34 +16,34 @@ Ruby port of EventEmitter from Node.js
 
 include
 
-  class Foo
+  class User
     include EventEmitter
-    attr_accessor :created_at
+    attr_accessor :name
   end
 
 regist event listener
 
-  foo = Foo.new
-  foo.created_at = Time.now
-  foo.on :chat do |data|
-    puts "chat - #{data[:user]} : #{data[:message]} at #{created_at}"
+  user = User.new
+  user.name = shokai
+  user.on :go do |data|
+    puts "#{name} go to #{data[:place]}"
   end
 
 call event
 
-  foo.emit :chat, {:user => 'shokai', :message => 'hello!!'}
-  # => chat - shokai : hello!!
+  user.emit :go, {:place => 'mountain'}
+  # => "shokai go to mountain"
 
 regist event using "once"
 
-  foo.once :bar do |data|
-    puts data
+  user.once :eat do |data|
+    puts "#{name} -> #{data}"
   end
 
 call
 
-  foo.emit :bar, 100  # => call only first time
-  foo.emit :bar, 200  # => not call
+  user.emit :eat, "BEEF"  # =>  "shokai -> BEEF"
+  user.emit :eat, "Ramen"  # => do not call. call only first time.
 
 see samples https://github.com/shokai/event_emitter/tree/master/samples
 

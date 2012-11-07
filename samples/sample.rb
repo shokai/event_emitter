@@ -2,32 +2,32 @@
 $:.unshift File.expand_path '../lib', File.dirname(__FILE__)
 require 'event_emitter'
 
-class Foo
+class User
   include EventEmitter
-  attr_accessor :created_at
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
 end
 
-foo = Foo.new
-foo.created_at = Time.now
+shokai = User.new 'shokai'
+ymrl = User.new 'ymrl'
 
-foo.on 'chat' do |data|
-  puts "chat - #{data[:user]} : #{data[:message]} at #{created_at}"
+shokai.on :go do |data|
+  puts "#{name} go to #{data[:place]}"
+end
+ymrl.on :go do |data|
+  puts "#{name} go to #{data[:place]}"
 end
 
-foo.on :sum do |data|
-  puts data.inject{|a,b|
-    a+b
-  }
+shokai.emit :go, {:place => 'mountain'}
+ymrl.emit :go, {:place => 'sea'}
+
+
+shokai.once :eat do |data|
+  puts "#{name} -> #{data}"
 end
 
-foo.once :bar do |data|
-  puts "hello #{data} at #{created_at}"
-end
-
-foo.emit 'chat', {:user => 'shokai', :message => 'hello world'}
-foo.emit :chat, :user => 'ymrl', :message => 'hello work'
-
-foo.emit :sum, [1,2,3,45]
-
-foo.emit :bar, 'shokai'
-foo.emit :bar, 'shooooookai' # not call
+shokai.emit :eat, 'BEEF'
+shokai.emit :eat, 'Ramen'  # do not call. call only first time if regist with "once"
