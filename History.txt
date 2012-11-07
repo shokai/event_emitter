@@ -1,3 +1,8 @@
+=== 0.0.2 2012-11-07
+
+* EventEmitter#once : call listener only first time
+* EventEmitter#add_listener, remove_listener
+
 === 0.0.1 2012-11-07
 
 * implement "on" and "emit"
