@@ -14,17 +14,20 @@ Ruby port of EventEmitter from Node.js
 
   require 'event_emitter'
 
+include
+
   class Foo
     include EventEmitter
   end
 
+regist event listener
 
-  ## regist event listener
   foo.on :chat do |data|
     puts "chat - #{data[:user]} : #{data[:message]}"
   end
 
-  ## call
+call event
+
   foo.emit :chat, {:user => 'shokai', :message => 'hello!!'}
 
 
