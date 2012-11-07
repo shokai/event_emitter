@@ -32,7 +32,7 @@ call event
   foo.emit :chat, {:user => 'shokai', :message => 'hello!!'}
   # => chat - shokai : hello!!
 
-regist event once
+regist event using "once"
 
   foo.once :bar do |data|
     puts data
