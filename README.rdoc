@@ -32,6 +32,18 @@ call event
   foo.emit :chat, {:user => 'shokai', :message => 'hello!!'}
   # => chat - shokai : hello!!
 
+regist event once
+
+  foo.once :bar do |data|
+    puts data
+  end
+
+call
+
+  foo.emit :bar, 100  # => call only first time
+  foo.emit :bar, 200  # => not call
+
+
 == LICENSE:
 
 (The MIT License)
