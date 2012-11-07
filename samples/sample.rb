@@ -22,7 +22,7 @@ ymrl.on :go do |data|
 end
 
 shokai.emit :go, {:place => 'mountain'}
-ymrl.emit :go, {:place => 'sea'}
+ymrl.emit :go, :place => 'cyberspace'
 
 
 shokai.once :eat do |data|
