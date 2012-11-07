@@ -18,13 +18,15 @@ include
 
   class Foo
     include EventEmitter
+    attr_accessor :created_at
   end
 
 regist event listener
 
   foo = Foo.new
+  foo.created_at = Time.now
   foo.on :chat do |data|
-    puts "chat - #{data[:user]} : #{data[:message]}"
+    puts "chat - #{data[:user]} : #{data[:message]} at #{created_at}"
   end
 
 call event

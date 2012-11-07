@@ -4,12 +4,14 @@ require 'event_emitter'
 
 class Foo
   include EventEmitter
+  attr_accessor :created_at
 end
 
 foo = Foo.new
+foo.created_at = Time.now
 
 foo.on 'chat' do |data|
-  puts "chat - #{data[:user]} : #{data[:message]}"
+  puts "chat - #{data[:user]} : #{data[:message]} at #{created_at}"
 end
 
 foo.on :sum do |data|
@@ -19,7 +21,7 @@ foo.on :sum do |data|
 end
 
 foo.once :bar do |data|
-  puts "hello #{data}"
+  puts "hello #{data} at #{created_at}"
 end
 
 foo.emit 'chat', {:user => 'shokai', :message => 'hello world'}

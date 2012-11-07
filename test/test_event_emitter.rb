@@ -4,34 +4,42 @@ class TestEventEmitter < MiniTest::Unit::TestCase
 
   class Foo
     include EventEmitter
+    attr_accessor :created_at
   end
 
   def setup
     @foo = Foo.new
+    @foo.created_at = @now = Time.now
   end
   
   def test_on_emit
     result = nil
+    __created_at = nil
     @foo.on :chat do |data|
       result = data
+      __created_at = created_at
     end
 
     @foo.emit :chat, :user => 'shokai', :message => 'hello world'
 
     assert result[:user] == 'shokai'
     assert result[:message] == 'hello world'
+    assert __created_at == @now, 'instance method'
   end
 
   def test_add_listener
     result = nil
+    __created_at = nil
     @foo.add_listener :chat do |data|
       result = data
+      __created_at = created_at
     end
 
     @foo.emit :chat, :user => 'shokai', :message => 'hello world'
 
     assert result[:user] == 'shokai'
     assert result[:message] == 'hello world'
+    assert __created_at == @now, 'instance method'
   end
 
   def test_remove_listener
