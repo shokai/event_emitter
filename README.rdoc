@@ -2,17 +2,17 @@
 
 * http://github.com/shokai/event_emitter
 
+== INSTALL:
+
+* gem install event_emitter
+
 == DESCRIPTION:
 
-EventEmitter(Node.js) in Ruby
+Ruby port of EventEmitter from Node.js
 
 == SYNOPSIS:
 
     require 'event_emitter'
-
-== INSTALL:
-
-* gem install event_emitter
 
 == LICENSE:
 
