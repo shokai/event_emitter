@@ -22,6 +22,7 @@ include
 
 regist event listener
 
+  foo = Foo.new
   foo.on :chat do |data|
     puts "chat - #{data[:user]} : #{data[:message]}"
   end
@@ -29,7 +30,7 @@ regist event listener
 call event
 
   foo.emit :chat, {:user => 'shokai', :message => 'hello!!'}
-
+  # => chat - shokai : hello!!
 
 == LICENSE:
 
