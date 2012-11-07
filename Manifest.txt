@@ -1,9 +1,13 @@
+.gitignore
+Gemfile
+Gemfile.lock
 History.txt
 Manifest.txt
-PostInstall.txt
 README.rdoc
 Rakefile
 lib/event_emitter.rb
+lib/event_emitter/emitter.rb
+samples/sample.rb
 script/console
 script/destroy
 script/generate
