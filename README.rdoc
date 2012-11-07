@@ -12,7 +12,8 @@ Ruby port of EventEmitter from Node.js
 
 == SYNOPSIS:
 
-  require 'event_emitter'
+  require "rubygems"
+  require "event_emitter"
 
 include
 
@@ -24,14 +25,14 @@ include
 regist event listener
 
   user = User.new
-  user.name = shokai
+  user.name = "shokai"
   user.on :go do |data|
     puts "#{name} go to #{data[:place]}"
   end
 
 call event
 
-  user.emit :go, {:place => 'mountain'}
+  user.emit :go, {:place => "mountain"}
   # => "shokai go to mountain"
 
 regist event using "once"
