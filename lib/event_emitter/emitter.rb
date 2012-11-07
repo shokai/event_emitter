@@ -5,6 +5,10 @@ module EventEmitter
     klass.__send__ :include, InstanceMethods
   end
 
+  def self.apply(object)
+    object.extend InstanceMethods
+  end
+
   module ClassMethods
   end
 
