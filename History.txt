@@ -1,3 +1,7 @@
+=== 0.0.3 2012-11-08
+
+* call listener with Object#instance_exec
+
 === 0.0.2 2012-11-07
 
 * EventEmitter#once : call listener only first time
