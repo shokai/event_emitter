@@ -46,6 +46,15 @@ call
   user.emit :eat, "BEEF"  # =>  "shokai -> BEEF"
   user.emit :eat, "Ramen"  # => do not call. call only first time.
 
+apply as instance-specific method
+
+  class Foo
+  end
+
+  foo = Foo.new
+  EventEmitter.apply foo
+
+
 see samples https://github.com/shokai/event_emitter/tree/master/samples
 
 == TEST:
