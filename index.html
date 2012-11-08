@@ -67,7 +67,7 @@
 <div class="highlight"><pre><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span>
 <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"shokai"</span>
 <span class="n">user</span><span class="o">.</span><span class="n">on</span> <span class="ss">:go</span> <span class="k">do</span> <span class="o">|</span><span class="n">data</span><span class="o">|</span>
-  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> go to </span><span class="si">#{</span><span class="n">data</span><span class="o">[</span><span class="ss">:place</span><span class="o">]</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2"> go to </span><span class="si">#{</span><span class="n">data</span><span class="o">[</span><span class="ss">:place</span><span class="o">]</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
 </pre></div>
 
@@ -82,7 +82,7 @@
 <p>regist event using "once"</p>
 
 <div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">once</span> <span class="ss">:eat</span> <span class="k">do</span> <span class="o">|</span><span class="n">data</span><span class="o">|</span>
-  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
 </pre></div>
 
@@ -121,17 +121,17 @@
 
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">DB</span>
   <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">connect</span>
-    <span class="n">self</span><span class="p">.</span><span class="n">emit</span> <span class="ss">:connect</span><span class="p">,</span> <span class="ss">:connected</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">emit</span> <span class="ss">:connect</span><span class="p">,</span> <span class="s">&quot;db_connected&quot;</span>
   <span class="n">end</span>
 <span class="n">end</span>
 
-<span class="nc">EventEmitter</span><span class="p">.</span><span class="n">apply</span> <span class="nc">DB</span>
+<span class="nc">EventEmitter</span><span class="p">.</span><span class="n">apply</span> <span class="nc">DB</span> <span class="c1">## set Class Method</span>
 
 <span class="nc">DB</span><span class="p">.</span><span class="n">on</span> <span class="ss">:connect</span> <span class="k">do</span> <span class="p">|</span><span class="n">status</span><span class="p">|</span>
   <span class="nb">puts</span> <span class="n">status</span>
 <span class="n">end</span>
 
-<span class="nc">DB</span><span class="p">.</span><span class="n">connect</span> <span class="c1"># =&gt; "connected"</span>
+<span class="nc">DB</span><span class="p">.</span><span class="n">connect</span> <span class="c1"># =&gt; "db_connected"</span>
 </pre></div>
 
 <h3>More Samples</h3>
