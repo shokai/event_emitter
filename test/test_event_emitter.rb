@@ -24,32 +24,32 @@ class TestEventEmitter < MiniTest::Unit::TestCase
 
   def test_on_emit
     result = nil
-    __created_at = nil
+    created_at = nil
     @foo.on :chat do |data|
       result = data
-      __created_at = created_at
+      created_at = self.created_at
     end
 
     @foo.emit :chat, :user => 'shokai', :message => 'hello world'
 
     assert result[:user] == 'shokai'
     assert result[:message] == 'hello world'
-    assert __created_at == @now, 'instance method'
+    assert created_at == @now, 'instance method'
   end
 
   def test_add_listener
     result = nil
-    __created_at = nil
+    created_at = nil
     @foo.add_listener :chat do |data|
       result = data
-      __created_at = created_at
+      created_at = self.created_at
     end
 
     @foo.emit :chat, :user => 'shokai', :message => 'hello world'
 
     assert result[:user] == 'shokai'
     assert result[:message] == 'hello world'
-    assert __created_at == @now, 'instance method'
+    assert created_at == @now, 'instance method'
   end
 
   def test_remove_listener
