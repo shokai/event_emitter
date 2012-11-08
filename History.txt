@@ -1,3 +1,7 @@
+=== 0.0.6 2012-11-09
+
+* add sample
+
 === 0.0.5 2012-11-08
 
 * add github page link
