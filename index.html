@@ -96,13 +96,24 @@
 
 <p>apply as instance-specific method</p>
 
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Foo</span>
-<span class="k">end</span>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span>
+<span class="n">end</span>
 
-<span class="n">foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="o">.</span><span class="n">new</span>
-<span class="no">EventEmitter</span><span class="o">.</span><span class="n">apply</span> <span class="n">foo</span>
+<span class="n">shokai</span> <span class="p">=</span> <span class="nc">User</span><span class="p">.</span><span class="n">new</span>
+<span class="n">ymrl</span> <span class="p">=</span> <span class="nc">User</span><span class="p">.</span><span class="n">new</span>
+<span class="nc">EventEmitter</span><span class="p">.</span><span class="n">apply</span> <span class="n">shokai</span> <span class="c1">## set Instance-specific Method</span>
+
+<span class="n">shokai</span><span class="p">.</span><span class="n">on</span> <span class="ss">:go</span> <span class="k">do</span> <span class="p">|</span><span class="n">data</span><span class="p">|</span>
+  <span class="nb">puts</span> <span class="s">&quot;go to #{</span><span class="n">data[</span><span class="nc">:place</span><span class="n">]</span><span class="s">}&quot;</span>
+<span class="n">end</span>
+
+<span class="n">shokai</span><span class="p">.</span><span class="n">emit</span> <span class="ss">:go</span><span class="p">,</span> <span class="ss">:place</span> <span class="p">=&gt;</span> <span class="s">&quot;chiba city&quot;</span>
+<span class="c1"># =&gt; &quot;go to chiba city&quot;</span>
+
+<span class="n">ymrl</span><span class="p">.</span><span class="n">on</span> <span class="ss">:go</span> <span class="k">do</span> <span class="p">|</span><span class="n">data</span><span class="p">|</span>  <span class="c1"># =&gt; raise &quot;undefined-method Error&quot;</span>
+  <span class="nb">puts</span> <span class="s">&quot;go to #{</span><span class="n">data[</span><span class="nc">:place</span><span class="n">]</span><span class="s">}&quot;</span>
+<span class="n">end</span>
 </pre></div>
-
 
 <h3>Class Method</h3>
 
