@@ -1,3 +1,8 @@
+=== 0.0.7 2012-11-09
+
+* on/emit without any args
+* add tests
+
 === 0.0.6 2012-11-09
 
 * add sample
