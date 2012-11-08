@@ -43,7 +43,7 @@ module EventEmitter
       end
     end
 
-    def emit(type, data)
+    def emit(type, data=nil)
       events.each do |e|
         if e[:type] == type.to_sym
           listener = e[:listener]

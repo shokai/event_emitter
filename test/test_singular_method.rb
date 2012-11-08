@@ -11,6 +11,16 @@ class TestSingularMethod < MiniTest::Unit::TestCase
     @foo.created_at = @now = Time.now
     EventEmitter.apply @foo
   end
+
+  def test_simple
+    created_at = nil
+    @foo.on :bar do
+      created_at = self.created_at
+    end
+    @foo.emit :bar
+
+    assert created_at == @now
+  end
   
   def test_on_emit
     result = nil

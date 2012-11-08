@@ -11,7 +11,17 @@ class TestEventEmitter < MiniTest::Unit::TestCase
     @foo = Foo.new
     @foo.created_at = @now = Time.now
   end
-  
+
+  def test_simple
+    created_at = nil
+    @foo.on :bar do
+      created_at = self.created_at
+    end
+    @foo.emit :bar
+
+    assert created_at == @now
+  end
+
   def test_on_emit
     result = nil
     __created_at = nil
