@@ -81,15 +81,15 @@
 
 <p>regist event using "once"</p>
 
-<div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">once</span> <span class="ss">:eat</span> <span class="k">do</span> <span class="o">|</span><span class="n">data</span><span class="o">|</span>
-  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span>
+<div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">once</span> <span class="ss">:eat</span> <span class="k">do</span> <span class="o">|</span><span class="n">what, where</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si"> eat #{</span><span class="n">what</span><span class="si">}</span><span class="si"> at #{</span><span class="n">where</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
 </pre></div>
 
 <p>call only once</p>
 
-<div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">emit</span> <span class="ss">:eat</span><span class="p">,</span> <span class="s2">"BEEF"</span>  <span class="c1"># =&gt;  "shokai -&gt; BEEF"</span>
-<span class="n">user</span><span class="o">.</span><span class="n">emit</span> <span class="ss">:eat</span><span class="p">,</span> <span class="s2">"Ramen"</span>  <span class="c1"># =&gt; do not call.</span>
+<div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">emit</span> <span class="ss">:eat</span><span class="p">,</span> <span class="s2">"BEEF"</span><span class="p">,</span> <span class="s2">"zanmai"</span> <span class="c1"># =&gt;  "shokai -&gt; eat BEEF at zanmai"</span>
+<span class="n">user</span><span class="o">.</span><span class="n">emit</span> <span class="ss">:eat</span><span class="p">,</span> <span class="s2">"Ramen"</span><span class="p">,</span> <span class="s2">"marutomo"</span>  <span class="c1"># =&gt; do not call.</span>
 </pre></div>
 
 <h3>Instance-Specific Method</h3>
