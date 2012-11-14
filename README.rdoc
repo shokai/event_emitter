@@ -45,14 +45,14 @@ call event
 
 regist event using "once"
 
-  user.once :eat do |data|
-    puts "#{name} -> #{data}"
+  user.once :eat do |what, where|
+    puts "#{name} -> eat #{what} at #{where}"
   end
 
 call
 
-  user.emit :eat, "BEEF"  # =>  "shokai -> BEEF"
-  user.emit :eat, "Ramen"  # => do not call. call only first time.
+  user.emit :eat, "BEEF", "zanmai"  # =>  "shokai -> eat BEEF at zanmai"
+  user.emit :eat, "Ramen", "marutomo"  # => do not call. call only first time.
 
 apply as instance-specific method
 
