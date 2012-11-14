@@ -43,12 +43,12 @@ module EventEmitter
       end
     end
 
-    def emit(type, data=nil)
+    def emit(type, *data)
       events.each do |e|
         if e[:type] == type.to_sym
           listener = e[:listener]
           remove_listener e[:id] if e[:params][:once]
-          instance_exec(data, &listener)
+          instance_exec(*data, &listener)
         end
       end
     end
