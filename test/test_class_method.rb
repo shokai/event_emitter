@@ -41,6 +41,27 @@ class TestClassMethod < MiniTest::Unit::TestCase
     assert created_at == @now, 'instance method'
   end
 
+  def test_on_emit_multiargs
+    _user = nil
+    _message = nil
+    _session = nil
+    created_at = nil
+    Foo.on :chat2 do |user, message, session|
+      _user = user
+      _message = message
+      _session = session
+      created_at = self.created_at
+    end
+
+    sid = Time.now.to_i
+    Foo.emit :chat2, 'shokai', 'hello world', sid
+
+    assert _user == 'shokai'
+    assert _message == 'hello world'
+    assert _session == sid
+    assert created_at == @now, 'instance method'
+  end
+
   def test_add_listener
     result = nil
     created_at = nil
