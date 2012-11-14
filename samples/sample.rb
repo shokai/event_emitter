@@ -25,8 +25,8 @@ shokai.emit :go, {:place => 'mountain'}
 ymrl.emit :go, :place => 'cyberspace'
 
 
-shokai.once :eat do |data, place|
-  puts "#{name} -> #{data} at #{place}"
+shokai.once :eat do |what, where|
+  puts "#{name} -> #{what} at #{where}"
 end
 
 shokai.emit :eat, 'BEEF', 'zanmai'
