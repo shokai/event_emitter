@@ -25,9 +25,9 @@ shokai.emit :go, {:place => 'mountain'}
 ymrl.emit :go, :place => 'cyberspace'
 
 
-shokai.once :eat do |data|
-  puts "#{name} -> #{data}"
+shokai.once :eat do |data, place|
+  puts "#{name} -> #{data} at #{place}"
 end
 
-shokai.emit :eat, 'BEEF'
-shokai.emit :eat, 'Ramen'  # do not call. call only first time if regist with "once"
+shokai.emit :eat, 'BEEF', 'zanmai'
+shokai.emit :eat, 'Ramen', 'marutomo'  # do not call. call only first time if regist with "once"
