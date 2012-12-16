@@ -85,12 +85,12 @@ class TestEventEmitter < MiniTest::Unit::TestCase
       p data
     end
 
-    assert @foo.events.size == 3, 'check registerd listener count'
+    assert @foo.__events.size == 3, 'check registerd listener count'
     @foo.remove_listener id
-    assert @foo.events.size == 2, 'remove listener by id'
+    assert @foo.__events.size == 2, 'remove listener by id'
 
     @foo.remove_listener :bar
-    assert @foo.events.size == 0, 'remove all "bar" listener'
+    assert @foo.__events.size == 0, 'remove all "bar" listener'
   end
 
   def test_once

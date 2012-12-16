@@ -78,7 +78,7 @@ class TestClassMethod < MiniTest::Unit::TestCase
   end
 
   def test_remove_listener
-    size = Foo.events.size
+    size = Foo.__events.size
 
     Foo.on :foo do |data|
       puts "bar #{data}"
@@ -91,12 +91,12 @@ class TestClassMethod < MiniTest::Unit::TestCase
       p data
     end
 
-    assert Foo.events.size == size+3, 'check registerd listener count'
+    assert Foo.__events.size == size+3, 'check registerd listener count'
     Foo.remove_listener id
-    assert Foo.events.size == size+2, 'remove listener by id'
+    assert Foo.__events.size == size+2, 'remove listener by id'
 
     Foo.remove_listener :foo
-    assert Foo.events.size == size, 'remove all "foo" listener'
+    assert Foo.__events.size == size, 'remove all "foo" listener'
   end
 
   def test_once
