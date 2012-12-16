@@ -30,6 +30,7 @@ include
     attr_accessor :name
   end
 
+
 regist event listener
 
   user = User.new
@@ -38,10 +39,12 @@ regist event listener
     puts "#{name} go to #{data[:place]}"
   end
 
+
 call event
 
   user.emit :go, {:place => "mountain"}
   # => "shokai go to mountain"
+
 
 regist event using "once"
 
@@ -49,10 +52,12 @@ regist event using "once"
     puts "#{name} -> eat #{what} at #{where}"
   end
 
+
 call
 
   user.emit :eat, "BEEF", "zanmai"  # =>  "shokai -> eat BEEF at zanmai"
   user.emit :eat, "Ramen", "marutomo"  # => do not call. call only first time.
+
 
 apply as instance-specific method
 
@@ -61,6 +66,12 @@ apply as instance-specific method
 
   foo = Foo.new
   EventEmitter.apply foo
+
+
+remove event listener
+
+  user.remove_listener :go
+  user.remove_listener event_id
 
 
 see samples https://github.com/shokai/event_emitter/tree/master/samples
