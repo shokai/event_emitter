@@ -1,3 +1,8 @@
+=== 0.2.0 2012-12-16
+
+* remove_listener
+* fix method-name duplication
+
 === 0.1.0 2012-11-15
 
 * support on/emit multiple arguments
