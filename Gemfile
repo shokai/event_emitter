@@ -1,5 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem 'hoe'
-gem 'newgem'
-gem 'minitest'
+# Specify your gem's dependencies in event_emitter.gemspec
+gemspec

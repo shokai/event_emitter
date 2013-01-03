@@ -1,28 +1,15 @@
-GEM
-  remote: http://rubygems.org/
+PATH
+  remote: .
   specs:
-    RedCloth (4.2.9)
-    RedCloth (4.2.9-java)
-    activesupport (2.3.14)
-    hoe (3.1.1)
-      rake (~> 0.8)
-    minitest (4.2.0)
-    newgem (1.5.3)
-      RedCloth (>= 4.1.1)
-      activesupport (~> 2.3.4)
-      hoe (>= 2.4.0)
-      rubigen (>= 1.5.3)
-      syntax (>= 1.0.0)
-    rake (0.9.2.2)
-    rubigen (1.5.8)
-      activesupport (>= 2.3.5, < 3.2.0)
-    syntax (1.0.0)
+    event_emitter (0.2.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
 
 PLATFORMS
   java
   ruby
 
 DEPENDENCIES
-  hoe
-  minitest
-  newgem
+  event_emitter!
