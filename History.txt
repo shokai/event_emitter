@@ -1,3 +1,7 @@
+=== 0.2.2 2012-01-04
+
+* bugfix
+
 === 0.2.1 2012-01-04
 
 * use bundler gem template
