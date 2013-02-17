@@ -22,6 +22,14 @@ class TestEventEmitter < MiniTest::Unit::TestCase
     assert created_at == @now
   end
 
+  def test_string_event_name
+    created_at = nil
+    @foo.on "bar" do
+      created_at = self.created_at
+    end
+    @foo.emit :bar
+  end
+
   def test_on_emit
     result = nil
     created_at = nil
