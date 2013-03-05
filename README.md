@@ -13,8 +13,11 @@ Install
 Requirements
 ------------
 
+testing on
+
 * Ruby 1.8.7+
 * Ruby 1.9.2+
+* Ruby 2.0.0+
 * JRuby 1.6.7+
 
 
@@ -76,6 +79,14 @@ remove event listener
 ```ruby
 user.remove_listener :go
 user.remove_listener event_id
+```
+
+catch all events
+```ruby
+user.on :* do |event_name, args|
+  puts event_name + " called"
+  p args
+end
 ```
 
 see samples https://github.com/shokai/event_emitter/tree/master/samples

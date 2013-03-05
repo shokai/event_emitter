@@ -1,8 +1,12 @@
-=== 0.2.2 2012-01-04
+=== 0.2.3 2013-03-05
+
+* catch all events with "EventEmitter#on :*"
+
+=== 0.2.2 2013-01-04
 
 * bugfix
 
-=== 0.2.1 2012-01-04
+=== 0.2.1 2013-01-04
 
 * use bundler gem template
 
