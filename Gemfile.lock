@@ -1,12 +1,12 @@
 PATH
   remote: .
   specs:
-    event_emitter (0.2.3)
+    event_emitter (0.2.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    minitest (4.6.2)
+    minitest (4.7.0)
 
 PLATFORMS
   java
