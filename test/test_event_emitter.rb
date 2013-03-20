@@ -103,13 +103,33 @@ class TestEventEmitter < MiniTest::Unit::TestCase
 
   def test_once
     total = 0
-    @foo.once :add do |data|
-      total += data
+    @foo.once :add do |num|
+      total += num
     end
 
     @foo.emit :add, 1
     assert total == 1, 'first call'
     @foo.emit :add, 1
     assert total == 1, 'call listener only first time'
+  end
+
+  def test_onces
+    total = 0
+    @foo.on :add do |num|
+      total += num
+    end
+
+    @foo.once :add do |num|
+      total += num
+    end
+
+    @foo.once :add do |num|
+      total += num
+    end
+
+    @foo.emit :add, 1
+    assert total == 3, 'first call'
+    @foo.emit :add, 1
+    assert total == 4, 'call'
   end
 end
