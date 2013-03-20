@@ -113,7 +113,7 @@ class TestEventEmitter < MiniTest::Unit::TestCase
     assert total == 1, 'call listener only first time'
   end
 
-  def test_onces
+  def test_multiple_once
     total = 0
     @foo.on :add do |num|
       total += num
@@ -127,9 +127,17 @@ class TestEventEmitter < MiniTest::Unit::TestCase
       total += num
     end
 
+    @foo.once :add do |num|
+      total += num
+    end
+
+    @foo.once :add do |num|
+      total += num
+    end
+
     @foo.emit :add, 1
-    assert total == 3, 'first call'
+    assert total == 5, 'first call'
     @foo.emit :add, 1
-    assert total == 4, 'call'
+    assert total == 6, 'call'
   end
 end
