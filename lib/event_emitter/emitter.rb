@@ -48,13 +48,16 @@ module EventEmitter
         case e[:type]
         when type.to_sym
           listener = e[:listener]
-          remove_listener e[:id] if e[:params][:once]
+          e[:type] = nil if e[:params][:once]
           instance_exec(*data, &listener)
         when :*
           listener = e[:listener]
-          remove_listener e[:id] if e[:params][:once]
+          e[:type] = nil if e[:params][:once]
           instance_exec(type, *data, &listener)
         end
+      end
+      __events.each do |e|
+        remove_listener e[:id] unless e[:type]
       end
     end
 
