@@ -38,8 +38,8 @@ class Bench
   def bench_100Kon_1emit
     foo = Foo.new
     count = 0
-    (100000-1).times do
-      foo.on :bar do
+    1.upto(100000-1).each do |i|
+      foo.on "bar_#{i}" do
       end
     end
     foo.on :bar do |num|
