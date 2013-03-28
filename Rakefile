@@ -6,3 +6,9 @@ Rake::TestTask.new do |t|
 end
 
 task :default => :test
+
+desc "run eventemitter benchmark"
+task :benchmark do
+  require File.expand_path 'benchmark/benchmark', File.dirname(__FILE__)
+  Bench.run
+end

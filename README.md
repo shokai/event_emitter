@@ -100,6 +100,12 @@ Test
     % rake test
 
 
+Benchmark
+---------
+
+    % rake benchmark
+
+
 Contributing
 ------------
 1. Fork it
