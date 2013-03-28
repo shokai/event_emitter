@@ -8,6 +8,7 @@ class Bench
   end
 
   def self.run
+    puts "#{RUBY_ENGINE} #{RUBY_VERSION}-p#{RUBY_PATCHLEVEL} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
     bench = self.new
     Benchmark.bm do |x|
       bench.methods.select{|i| i.to_s =~ /^bench_(.+)$/}.sort.each do |m|
