@@ -7,11 +7,13 @@ GEM
   remote: https://rubygems.org/
   specs:
     minitest (4.7.0)
+    rake (10.0.4)
 
 PLATFORMS
   java
-  ruby
 
 DEPENDENCIES
+  bundler (~> 1.3)
   event_emitter!
   minitest
+  rake
