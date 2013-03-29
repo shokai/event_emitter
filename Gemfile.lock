@@ -11,6 +11,7 @@ GEM
 
 PLATFORMS
   java
+  ruby
 
 DEPENDENCIES
   bundler (~> 1.3)
