@@ -14,50 +14,66 @@ module EventEmitter
 
   module InstanceMethods
     def __events
-      @__events ||= []
+      __event_by_ids.values
+    end
+
+    def __event_by_ids
+      @__event_by_ids ||= {}
+    end
+
+    def __event_by_types
+      @__event_types ||= Hash.new{|h,k| h[k] = [] }
     end
 
     def add_listener(type, params={}, &block)
       raise ArgumentError, 'listener block not given' unless block_given?
-      id = __events.empty? ? 0 : __events.last[:id]+1
-      __events << {
+      type = type.to_sym
+      id = @__last_event_id = (@__last_event_id||0) + 1
+      e = {
+        :id => id,
+        :type => type,
         :type => type.to_sym,
         :listener => block,
-        :params => params,
-        :id => id
+        :params => params
       }
-      id
+      __event_by_ids[id] = e
+      __event_by_types[type] << e
+      return id
     end
 
     alias :on :add_listener
 
     def remove_listener(id_or_type)
-      if id_or_type.class == Fixnum
-        __events.delete_if do |e|
-          e[:id] == id_or_type
+      if id_or_type.class == Fixnum # id
+        e = __event_by_ids[id_or_type]
+        return unless e
+        __event_by_ids.delete id_or_type
+        __event_by_types[e[:type]].delete id_or_type
+      elsif [String, Symbol].include? id_or_type.class # type
+        type = id_or_type.to_sym
+        __event_by_types[type].each do |id|
+          __event_by_ids.delete id
         end
-      elsif [String, Symbol].include? id_or_type.class
-        __events.delete_if do |e|
-          e[:type] == id_or_type.to_sym
-        end
+        __event_by_types.delete type
       end
     end
 
     def emit(type, *data)
-      __events.each do |e|
-        case e[:type]
-        when type.to_sym
-          listener = e[:listener]
-          e[:type] = nil if e[:params][:once]
-          instance_exec(*data, &listener)
-        when :*
-          listener = e[:listener]
-          e[:type] = nil if e[:params][:once]
-          instance_exec(type, *data, &listener)
+      type = type.to_sym
+      delete_ids = []
+      if type == :*
+        __event_by_ids.values.each do |e|
+          delete_ids.push e[:id] if e[:params][:once]
+          instance_exec(e[:type], *data, &e[:listener])
+        end
+      else
+        __event_by_types[type].each do |e|
+          delete_ids.push e[:id] if e[:params][:once]
+          instance_exec(*data, &e[:listener])
         end
       end
-      __events.each do |e|
-        remove_listener e[:id] unless e[:type]
+      delete_ids.each do |id|
+        remove_listener id
       end
     end
 
