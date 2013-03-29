@@ -14,14 +14,13 @@ module EventEmitter
 
   module InstanceMethods
     def __events
-      @__events ||= []
+      @__events ||= Hash.new{|h,k| h[k] = [] }
     end
 
     def add_listener(type, params={}, &block)
       raise ArgumentError, 'listener block not given' unless block_given?
-      id = __events.empty? ? 0 : __events.last[:id]+1
-      __events << {
-        :type => type.to_sym,
+      id = (@__events_last_id ||= -1)+1
+      __events[type.to_sym] << {
         :listener => block,
         :params => params,
         :id => id
@@ -33,31 +32,30 @@ module EventEmitter
 
     def remove_listener(id_or_type)
       if id_or_type.class == Fixnum
-        __events.delete_if do |e|
-          e[:id] == id_or_type
+        __events.values.each do |events|
+          events.delete_if do |e|
+            e[:id] == id_or_type
+          end
         end
       elsif [String, Symbol].include? id_or_type.class
-        __events.delete_if do |e|
-          e[:type] == id_or_type.to_sym
-        end
+        __events.delete id_or_type.to_sym
       end
     end
 
     def emit(type, *data)
-      __events.each do |e|
-        case e[:type]
-        when type.to_sym
-          listener = e[:listener]
-          e[:type] = nil if e[:params][:once]
-          instance_exec(*data, &listener)
-        when :*
-          listener = e[:listener]
-          e[:type] = nil if e[:params][:once]
-          instance_exec(type, *data, &listener)
-        end
+      delete_ids = []
+      __events[type.to_sym].each do |e|
+        listener = e[:listener]
+        delete_ids.push e[:id] if e[:params][:once]
+        instance_exec(*data, &listener)
       end
-      __events.each do |e|
-        remove_listener e[:id] unless e[:type]
+      __events[:*].each do |e|
+        listener = e[:listener]
+        delete_ids.push e[:id] if e[:params][:once]
+        instance_exec(type, *data, &listener)
+      end
+      delete_ids.each do |id|
+        remove_listener id
       end
     end
 
