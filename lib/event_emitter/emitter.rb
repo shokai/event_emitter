@@ -1,7 +1,7 @@
 
 module EventEmitter
   def self.included(klass)
-    klass.extend ClassMethods
+    # klass.extend ClassMethods
     klass.__send__ :include, InstanceMethods
   end
 
@@ -44,9 +44,10 @@ module EventEmitter
     end
 
     def emit(type, *data)
+      type = type.to_sym
       __events.each do |e|
         case e[:type]
-        when type.to_sym
+        when type
           listener = e[:listener]
           e[:type] = nil if e[:params][:once]
           instance_exec(*data, &listener)
