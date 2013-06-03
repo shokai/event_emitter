@@ -1,6 +1,6 @@
 require File.expand_path 'test_helper', File.dirname(__FILE__)
 
-class TestSingularMethod < MiniTest::Unit::TestCase
+class TestSingularMethod < MiniTest::Test
 
   class Foo
     attr_accessor :created_at

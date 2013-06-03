@@ -1,6 +1,6 @@
 require File.expand_path 'test_helper', File.dirname(__FILE__)
 
-class TestCatchAllEvents < MiniTest::Unit::TestCase
+class TestCatchAllEvents < MiniTest::Test
 
   class Foo
     include EventEmitter
