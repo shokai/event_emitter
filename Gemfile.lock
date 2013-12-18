@@ -6,8 +6,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    minitest (5.0.3)
-    rake (10.0.4)
+    minitest (5.2.0)
+    rake (10.1.0)
 
 PLATFORMS
   java
