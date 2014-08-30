@@ -4,7 +4,7 @@ event_emitter
 * Ruby port of EventEmitter from Node.js
 * http://shokai.github.com/event_emitter
 
-![Travis-CI build status](https://travis-ci.org/shokai/event_emitter.png)
+[![Build Status](https://travis-ci.org/shokai/event_emitter.svg)](https://travis-ci.org/shokai/event_emitter)
 
 
 Install
