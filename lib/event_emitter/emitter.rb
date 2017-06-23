@@ -32,7 +32,7 @@ module EventEmitter
     alias :on :add_listener
 
     def remove_listener(id_or_type)
-      if id_or_type.class == Fixnum
+      if id_or_type.class == 0.class
         __events.delete_if do |e|
           e[:id] == id_or_type
         end
