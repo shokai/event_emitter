@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    event_emitter (0.2.5)
+    event_emitter (0.2.6)
 
 GEM
   remote: https://rubygems.org/
