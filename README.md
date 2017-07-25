@@ -13,18 +13,6 @@ Install
     % gem install event_emitter
 
 
-Requirements
-------------
-
-testing on
-
-* Ruby 1.8.7
-* Ruby 1.9.2
-* Ruby 2.0.0
-* Ruby 2.1.0
-* JRuby
-
-
 Synopsys
 --------
 
