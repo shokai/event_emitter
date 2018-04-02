@@ -13,7 +13,7 @@ Install
     % gem install event_emitter
 
 
-Synopsys
+Synopsis
 --------
 
 load rubygem
