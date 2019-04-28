@@ -18,10 +18,10 @@ class TestCatchAllEvents < MiniTest::Test
     called_event = nil
     @foo.on :* do |event|
       called_event = event
-      created_at = self.created_at
+      created_at = @foo.created_at
     end
     @foo.on :bar do
-      created_at_ = self.created_at
+      created_at_ = @foo.created_at
     end
     @foo.emit :bar
 

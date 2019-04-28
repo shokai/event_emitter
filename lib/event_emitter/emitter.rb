@@ -50,11 +50,11 @@ module EventEmitter
         when type
           listener = e[:listener]
           e[:type] = nil if e[:params][:once]
-          instance_exec(*data, &listener)
+          listener.call(*data)
         when :*
           listener = e[:listener]
           e[:type] = nil if e[:params][:once]
-          instance_exec(type, *data, &listener)
+          listener.call(type, *data)
         end
       end
       __events.each do |e|

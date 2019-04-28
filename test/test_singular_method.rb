@@ -15,7 +15,7 @@ class TestSingularMethod < MiniTest::Test
   def test_simple
     created_at = nil
     @foo.on :bar do
-      created_at = self.created_at
+      created_at = @foo.created_at
     end
     @foo.emit :bar
 
@@ -27,7 +27,7 @@ class TestSingularMethod < MiniTest::Test
     created_at = nil
     @foo.on :chat do |data|
       result = data
-      created_at = self.created_at
+      created_at = @foo.created_at
     end
 
     @foo.emit :chat, :user => 'shokai', :message => 'hello world'
@@ -46,7 +46,7 @@ class TestSingularMethod < MiniTest::Test
       _user = user
       _message = message
       _session = session
-      created_at = self.created_at
+      created_at = @foo.created_at
     end
 
     sid = Time.now.to_i
@@ -63,7 +63,7 @@ class TestSingularMethod < MiniTest::Test
     created_at = nil
     @foo.add_listener :chat do |data|
       result = data
-      created_at = self.created_at
+      created_at = @foo.created_at
     end
 
     @foo.emit :chat, :user => 'shokai', :message => 'hello world'
