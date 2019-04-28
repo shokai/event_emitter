@@ -19,7 +19,7 @@ class TestClassMethod < MiniTest::Test
   def test_simple
     created_at = nil
     Foo.on :bar do
-      created_at = self.created_at
+      created_at = Foo.created_at
     end
     Foo.emit :bar
 
@@ -31,7 +31,7 @@ class TestClassMethod < MiniTest::Test
     created_at = nil
     Foo.on :chat do |data|
       result = data
-      created_at = self.created_at
+      created_at = Foo.created_at
     end
 
     Foo.emit :chat, :user => 'shokai', :message => 'hello world'
@@ -50,7 +50,7 @@ class TestClassMethod < MiniTest::Test
       _user = user
       _message = message
       _session = session
-      created_at = self.created_at
+      created_at = Foo.created_at
     end
 
     sid = Time.now.to_i
@@ -67,7 +67,7 @@ class TestClassMethod < MiniTest::Test
     created_at = nil
     Foo.add_listener :chat do |data|
       result = data
-      created_at = self.created_at
+      created_at = Foo.created_at
     end
 
     Foo.emit :chat, :user => 'shokai', :message => 'hello world'
